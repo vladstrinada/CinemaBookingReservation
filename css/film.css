@@ -1,0 +1,106 @@
+.filmbody {
+    background-color: black;
+    background-image: url(/img/cinemalogin.jpg);
+    margin: auto;
+}
+.filmcontainer{
+    border-radius: 5px;
+    padding: 100px;
+    text-align: center;
+}
+.spacing {
+    padding: 50px;
+    clear:both;
+}
+.logincontainer {
+border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    background-image:url(../img/cinemalogin.jpg);
+    height:700px;
+    
+}
+.loginbody {
+    
+    background-color: black;
+    
+    margin: auto;
+}
+.spacinglogin {
+    padding: 20px;
+    clear:both;
+}
+.spacingloginpass {
+    padding: 8px;
+    clear:both;
+}
+.movie {
+    width:600px;
+   
+    position: relative;
+    font-size: 12px;
+    text-decoration-style: none;
+}
+.title {
+font-size: 24px;
+    font-weight: bold;
+    border-bottom: 1px solid black;
+    padding-left: 10px;
+    clear:both;
+}
+.movie img {
+    width: 350px;
+    border-radius: 7px;
+    align-content: center;
+}
+
+.movieTitle {
+    height: 25px;
+    position: relative;
+}
+.movieTitle div {
+    position:relative;
+    bottom: 0;
+    
+    
+}
+.half  {
+    width: 300px;
+    float: left;
+    padding: 20px;
+    
+}
+
+.spacingfilm {
+    padding: 10px;
+    clear:both;
+}
+.spacingHead {
+    padding: 15px;
+    clear:both;
+}
+.halfone  {
+    width: 400px;
+    float:right;
+    padding: 40px;
+    
+    
+}
+
+#regcontainer {
+border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    background:url(../img/reserlogin.jpg);
+    height:800px;
+    
+}
+.comment{
+       border:1px solid #666;
+       margin:10px;
+       padding:10px;
+       font-family:Tahoma;
+       font-size:12px;
+       border-radius:4px;
+       box-shadow:2px 2px 2px #999;
+    }
