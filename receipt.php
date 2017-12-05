@@ -1,5 +1,17 @@
 <?php
-include("SESSION.PHP");?>
+	include('db_login.php');
+	session_start();
+	$connection = mysqli_connect($db_host, $db_username, $db_password);
+	if (!$connection)
+	{
+		die ("Could not connect to the database: <br />". mysqli_error($connection));
+	}
+	mysqli_select_db($connection,'book');
+$userid = strip_tags( utf8_decode( $_POST['userid'] ) );
+$select ="select * from register where userid = '" . $userid . "' and password = '" . $password . "'";
+
+?>
+
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 
@@ -71,37 +83,33 @@ float: right;
 <h1 align="center"><font face="Franklin Gothic Medium" Color="black" size="3">
 <table border=1 align=center>
 <tr>
-<td>Numer biletu</td>
+
 <td>Imie rezerwacji</td>
-<td>Ilosc biletow</td>
+<td>Numer miejsca</td>
 <td>Nazwa</td>
-<td>Cena</td>
+<td>Data</td>
 <td>Czas</td>
+
 </tr>
 <?php
-include('conn.php');
-$submit=$_POST['submits'];
-$query=mysql_query("SELECT * FROM tickets ORDER BY ID  DESC");
-{
-	$row=mysql_fetch_array($query);
-	echo"<tr><td>".$row['Ticket_Number']."</td>";
-	echo"<td>".$row['cname']."</td>";
-	echo"<td>".$row['quantity']."</td>";
-	echo"<td>".$row['Title']."</td>";
-	echo"<td>".$row['price']."</td>";
-	echo"<td>".$row['Time']."</td>";
-	
-}
+$query = "select * from seat where userid = '" . $userid . "'";
+						$result = mysqli_query($connection, $query);
+                                                                             
+
+								
+									while($row = mysqli_fetch_array($result))
+									{
+										echo "<tr>";
+											echo "<td><input type='checkbox' name='formSeat[]' value='".$row['PNR']."'/></td>";
+                                        echo "<td>". $row['movie_name'] ."</td>";
+											echo "<td>". $row['number'] ."</td>";
+											echo "<td>". $row['date'] ."</td>";
+                                        echo "<td>". $row['time'] ."</td>";
+										echo "</tr>";				
+									}
 ?>
 </table></h1></font>
-<h1 align="left"><font face="arial" Color="black" size="2px">&nbsp;&nbsp;To jest kopija biletu.Prosze zachować ze soba. Jest wymagana przed wyborem miejsc do kina:&nbsp;&nbsp;</br></font><font size="1">&nbsp;&nbsp;*&nbsp; Pracujemy od poniedzialku do niedzieli.<br>&nbsp;&nbsp;Dokument jest ważny przed <?php echo date("M-d-Y"); ?>&nbsp;przed&nbsp;<?php
-include('conn.php');
-$query=mysql_query("SELECT * FROM time ORDER BY `tickets`.`Ticket_Number`  DESC");
-{
-	$row=mysql_fetch_array($query);
-	echo "".$row['Time']."";
-}
-?> </font></h1>
+<h1 align="left"><font face="arial" Color="black" size="2px">&nbsp;&nbsp;To jest kopija biletu.Prosze zachować ze soba. Jest wymagana przed wyborem miejsc do kina:&nbsp;&nbsp;</br></font><font size="1">&nbsp;&nbsp;*&nbsp; Pracujemy od poniedzialku do niedzieli.<br>&nbsp;&nbsp;Dokument jest ważny przed  </font></h1>
 
 </div>
 

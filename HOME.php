@@ -1,6 +1,5 @@
 <?php
 session_start();
-include "conn.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,27 +30,7 @@ include "conn.php";
 	 <link  href="css/film.css" rel="stylesheet">
       
       
-	<script type="text/javascript">
-    $(function() {
-    $("#send").click(function(){
-      var author = $("#author").val();
-      var message = $("#message").val();                
-    $.ajax({
-      type: "POST",
-      url: "sendMessage.php",
-      data: {"author": author, "message": message},
-      cache: false,                        
-      success: function(response){
-      var messageResp = new Array('Wiadomość wysłana','Wiadomość nie wysłana, błąd w bazie danych','Нельзя отправлять пустые сообщения');
-      var resultStat = messageResp[Number(response)];
-      if(response == 0){
-    $("#author").val("");
-    $("#message").val("");
-    $("#commentBlock").append("<div class='comment'>Autor <strong>"+author+"</strong><br>"+message+"</div>");
-      }
-    $("#resp").text(resultStat).show().delay(1500).fadeOut(800);
-      }});return false;});});
-</script>
+	
 
   </head>
 
@@ -79,9 +58,6 @@ include "conn.php";
             </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="./Login.php">Zaloguj</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="./REGISTRATION.php">Rejestracja</a>
             </li>
               <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
@@ -288,7 +264,6 @@ include "conn.php";
       </div>
     </footer>
 
-    <!-- Portfolio Modals -->
 
     <!-- Modal 1 -->
     <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
@@ -307,11 +282,10 @@ include "conn.php";
                   <h2 class="text-uppercase">Blade Runner 2049</h2>
                   <p class="item-intro text-muted">Sci-Fi</p>
                   <img class="img-fluid d-block mx-auto" src="img/blade-runner-2049-gosling.jpg" alt="">
-                  <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                  <p>Oficer policji Los Angeles trafia na ukrywaną przez lata informację, która może pogrążyć resztki społeczeństwa w chaosie. Odkrycie prowadzi go do poszukiwań Ricka Deckarda, byłego łowcy androidów, który zaginął trzydzieści lat temu.</p>
                   <ul class="list-inline">
-                    <li>Date: January 2017</li>
-                    <li>Client: Threads</li>
-                    <li>Category: Illustration</li>
+                    <li>Data: Pażdziernik 2017</li>
+                    <li>Długość:2h 43min.</li>
                   </ul>
         
 
@@ -340,11 +314,10 @@ include "conn.php";
                   <h2 class="text-uppercase">Thor : Ragnarok</h2>
                   <p class="item-intro text-muted">Fantasy, Przygodowy.</p>
                   <img class="img-fluid d-block mx-auto" src="img/thor.jpg" alt="">
-                  <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                  <p>Thor mierzy się w walce bogów, podczas gdy Asgard jest zagrożony Ragnarokiem, nordycką apokalipsą</p>
                   <ul class="list-inline">
-                    <li>Date: January 2017</li>
-                    <li>Client: Explore</li>
-                    <li>Category: Graphic Design</li>
+                    <li>Data: Pażdziernik 2017</li>
+                    <li>Długość : 2h 10min.</li>
                   </ul>
                   <button class="btn btn-primary" data-dismiss="modal" type="button">
                     <i class="fa fa-times"></i>

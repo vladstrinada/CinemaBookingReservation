@@ -1,5 +1,12 @@
 <?php
+include('db_login.php');
 session_start();
+$connection = mysqli_connect($db_host, $db_username, $db_password);
+if (!$connection)
+{
+	die ("Could not connect to the database: <br />". mysqli_error($connection));
+}
+mysqli_select_db($connection,'book');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,9 +65,7 @@ session_start();
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="./Login.php">Zaloguj</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="./REGISTRATION.php">Rejestracja</a>
-            </li>
+        
               <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
             </li>
@@ -94,12 +99,14 @@ session_start();
             </a>
             <div class="portfolio-caption">
                  <?php
-include('conn.php');
-$query=mysql_query("SELECT * FROM reservation.movies where No=1");
+include('db_login.php');
+
+$query="SELECT * FROM book.movies where No=1";
+     $result=mysqli_query($connection,$query);           
 {
-	$row=mysql_fetch_array($query); ?>
+	$row=mysqli_fetch_array($result); ?>
 	<p class="text-muted"><?php echo "<p>".$row['status']."<br>"; ?>
-                <a href="./updatecall.php"><h4><?php echo $row['title']."<br>"; ?></a>
+                <a href="./index.php"><h4><?php echo $row['title']."<br>"; ?></a>
                     <p class="text-muted">Sci-Fi</p>
                     <?php
     
@@ -119,12 +126,13 @@ $query=mysql_query("SELECT * FROM reservation.movies where No=1");
             </a>
             <div class="portfolio-caption">
               <?php
-include('conn.php');
-$query=mysql_query("SELECT * FROM reservation.movies where No=2");
+include('db_login.php');
+$query="SELECT * FROM book.movies where No=2";
+           $result=mysqli_query($connection,$query);     
 {
-	$row=mysql_fetch_array($query); ?>
+	$row=mysqli_fetch_array($result); ?>
 	<p class="text-muted"><?php echo "<p>".$row['status']."<br>"; ?>
-                <a href="./updatecall.php"><h4><?php echo $row['title']."<br>"; ?></a>
+                <a href="./index1.php"><h4><?php echo $row['title']."<br>"; ?></a>
                     <p class="text-muted">Fantasy,Przygodowy</p>
                     <?php
 
@@ -143,12 +151,13 @@ $query=mysql_query("SELECT * FROM reservation.movies where No=2");
             </a>
             <div class="portfolio-caption">
               <?php
-include('conn.php');
-$query=mysql_query("SELECT * FROM reservation.movies where No=3");
+include('db_login.php');
+$query="SELECT * FROM book.movies where No=3";
+                $result=mysqli_query($connection,$query);
 {
-	$row=mysql_fetch_array($query); ?>
+	$row=mysqli_fetch_array($result); ?>
 	<p class="text-muted"><?php echo "<p>".$row['status']."<br>"; ?>
-               <a href="./updatecall.php"><h4><?php echo $row['title']."<br>"; ?></a>
+               <a href="./index2.php"><h4><?php echo $row['title']."<br>"; ?></a>
                     <p class="text-muted">Action</p>
                     <?php
     
@@ -167,12 +176,13 @@ $query=mysql_query("SELECT * FROM reservation.movies where No=3");
             </a>
             <div class="portfolio-caption">
               <?php
-include('conn.php');
-$query=mysql_query("SELECT * FROM reservation.movies where No=4");
+include('db_login.php');
+$query="SELECT * FROM book.movies where No=4";
+                $result=mysqli_query($connection,$query);
 {
-	$row=mysql_fetch_array($query); ?>
+	$row=mysqli_fetch_array($result); ?>
 	<p class="text-muted"><?php echo "<p>".$row['status']."<br>"; ?>
-                <a href="./updatecall.php"><h4><?php echo $row['title']."<br>"; ?></a>
+                <a href="./index3.php"><h4><?php echo $row['title']."<br>"; ?></a>
                     <p class="text-muted">Komedia</p>
                     <?php
     
@@ -192,12 +202,13 @@ $query=mysql_query("SELECT * FROM reservation.movies where No=4");
             </a>
             <div class="portfolio-caption">
               <?php
-include('conn.php');
-$query=mysql_query("SELECT * FROM reservation.movies where No=5");
+include('db_login.php');
+$query="SELECT * FROM book.movies where No=5";
+                $result=mysqli_query($connection,$query);
 {
-	$row=mysql_fetch_array($query); ?>
+	$row=mysqli_fetch_array($result); ?>
 	<p class="text-muted"><?php echo "<p>".$row['status']."<br>"; ?>
-                <a href="./updatecall.php"><h4><?php echo $row['title']."<br>"; ?></a>
+                <a href="./index4.php"><h4><?php echo $row['title']."<br>"; ?></a>
                     <p class="text-muted">Akcja, Sci-Fi</p>
                     <?php
     
@@ -217,12 +228,13 @@ $query=mysql_query("SELECT * FROM reservation.movies where No=5");
             </a>
             <div class="portfolio-caption">
               <?php
-include('conn.php');
-$query=mysql_query("SELECT * FROM reservation.movies where No=6");
+include('db_login.php');
+$query="SELECT * FROM book.movies where No=6";
+                $result=mysqli_query($connection,$query);
 {
-	$row=mysql_fetch_array($query); ?>
+	$row=mysqli_fetch_array($result); ?>
 	<p class="text-muted"><?php echo "<p>".$row['status']."<br>"; ?>
-                <a href="./updatecall.php"><h4><?php echo $row['title']."<br>"; ?></a>
+                <a href="./index5.php"><h4><?php echo $row['title']."<br>"; ?></a>
                     <p class="text-muted">Horror</p>
                     <?php
     
@@ -233,8 +245,6 @@ $query=mysql_query("SELECT * FROM reservation.movies where No=6");
             </div>
           </div>
         </div>
-          <h2 class="section-heading text-uppercase">Chcesz zarezerwowac bilet?</h2> 
-              <h2 class="section-heading text-uppercase"><a href="./updatecall.php">Zaloguj sie</a></h2>
       </div>
     </section>
       
@@ -459,20 +469,21 @@ $query=mysql_query("SELECT * FROM reservation.movies where No=6");
                   <i class="fa fa-plus fa-3x"></i>
                 </div>
               </div>
-              <img class="img-fluid" src="img/blade-runner-2049-goslingsmall.jpg" alt="">
+              <img class="img-fluid" src="img/stws.jpg" alt="">
             </a>
             <div class="portfolio-caption">
                  <?php
-include('conn.php');
-$query=mysql_query("SELECT * FROM `cinema1`");
+include('db_login.php');
+$query="SELECT * FROM book.movies where No=7";
+                $result=mysqli_query($connection,$query);
 {
-	$row=mysql_fetch_array($query); ?>
+	$row=mysqli_fetch_array($result); ?>
 	<p class="text-muted"><?php echo "<p>".$row['status']."<br>"; ?>
-                <h4><?php echo $row['title']."<br>"; ?>
-                    <p class="text-muted">Sci-Fi</p>
+                <a href="#"><h4><?php echo $row['title']."<br>"; ?></a>
+                    <p class="text-muted">Akcja, Sci-Fi</p>
                     <?php
     
-	echo $row['cinema']."<br></p>";
+	
 }
 ?>
 </div>
@@ -485,20 +496,21 @@ $query=mysql_query("SELECT * FROM `cinema1`");
                   <i class="fa fa-plus fa-3x"></i>
                 </div>
               </div>
-              <img class="img-fluid" src="img/thorsmall.jpg" alt="">
+              <img class="img-fluid" src="img/padds.jpg" alt="">
             </a>
             <div class="portfolio-caption">
-              <?php
-include('conn.php');
-$query=mysql_query("SELECT * FROM `cinema2`");
+   <?php
+include('db_login.php');
+$query="SELECT * FROM book.movies where No=8";
+                $result=mysqli_query($connection,$query);
 {
-	$row=mysql_fetch_array($query); ?>
+	$row=mysqli_fetch_array($result); ?>
 	<p class="text-muted"><?php echo "<p>".$row['status']."<br>"; ?>
-                <h4><?php echo $row['title']."<br>"; ?>
-                    <p class="text-muted">Fantasy,Przygodowy</p>
+                <a href="#"><h4><?php echo $row['title']."<br>"; ?></a>
+                    <p class="text-muted">Akcja, Sci-Fi</p>
                     <?php
     
-	echo $row['cinema']."<br></p>";
+	
 }
 ?>
             </div>
@@ -513,17 +525,18 @@ $query=mysql_query("SELECT * FROM `cinema2`");
               <img class="img-fluid" src="img/geostormsmall.jpg" alt="">
             </a>
             <div class="portfolio-caption">
-              <?php
-include('conn.php');
-$query=mysql_query("SELECT * FROM `cinema3`");
+             <?php
+include('db_login.php');
+$query="SELECT * FROM book.movies where No=9";
+                $result=mysqli_query($connection,$query);
 {
-	$row=mysql_fetch_array($query); ?>
+	$row=mysqli_fetch_array($result); ?>
 	<p class="text-muted"><?php echo "<p>".$row['status']."<br>"; ?>
-                <h4><?php echo $row['title']."<br>"; ?>
-                    <p class="text-muted">Action</p>
+                <a href="#"><h4><?php echo $row['title']."<br>"; ?></a>
+                    <p class="text-muted">Akcja, Sci-Fi</p>
                     <?php
     
-	echo $row['cinema']."<br></p>";
+	
 }
 ?>
             </div>
@@ -534,101 +547,7 @@ $query=mysql_query("SELECT * FROM `cinema3`");
       
       <!-- Portfolio Modals -->
 
-    <!-- Modal 1 -->
-    <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="close-modal" data-dismiss="modal">
-            <div class="lr">
-              <div class="rl"></div>
-            </div>
-          </div>
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-8 mx-auto">
-                <div class="modal-body">
-                  <!-- Project Details Go Here -->
-                  <h2 class="text-uppercase">Blade Runner 2049</h2>
-                  <p class="item-intro text-muted">Sci-Fi</p>
-                  <img class="img-fluid d-block mx-auto" src="img/blade-runner-2049-gosling.jpg" alt="">
-                  <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-                  <ul class="list-inline">
-                    <li>Date: January 2017</li>
-                    <li>Client: Threads</li>
-                    <li>Category: Illustration</li>
-                  </ul>
-            
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal 2 -->
-    <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="close-modal" data-dismiss="modal">
-            <div class="lr">
-              <div class="rl"></div>
-            </div>
-          </div>
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-8 mx-auto">
-                <div class="modal-body">
-                  <!-- Project Details Go Here -->
-                  <h2 class="text-uppercase">Thor : Ragnarok</h2>
-                  <p class="item-intro text-muted">Fantasy, Przygodowy.</p>
-                  <img class="img-fluid d-block mx-auto" src="img/thor.jpg" alt="">
-                  <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-                  <ul class="list-inline">
-                    <li>Date: January 2017</li>
-                    <li>Client: Explore</li>
-                    <li>Category: Graphic Design</li>
-                  </ul>
-                
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal 3 -->
-    <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="close-modal" data-dismiss="modal">
-            <div class="lr">
-              <div class="rl"></div>
-            </div>
-          </div>
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-8 mx-auto">
-                <div class="modal-body">
-                  <!-- Project Details Go Here -->
-                  <h2 class="text-uppercase">Geostorm</h2>
-                  <p class="item-intro text-muted">Action</p>
-                  <img class="img-fluid d-block mx-auto" src="img/geostorm.jpg" alt="">
-                  <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-                  <ul class="list-inline">
-                    <li>Date: January 2017</li>
-                    <li>Client: Finish</li>
-                    <li>Category: Identity</li>
-                  </ul>
-                  
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    
               
               <div class="spacing"></div> 
               
